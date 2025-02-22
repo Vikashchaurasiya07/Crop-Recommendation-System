@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle as pkl
-import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 
 # Load the trained model
@@ -55,19 +54,6 @@ if st.button("Show Accuracy Graph"):
         train_accuracies.append(accuracy_score(y_train, dtc.predict(X_train)))
         test_accuracies.append(accuracy_score(y_test, dtc.predict(X_test)))
 
-    # Plot and display
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(max_depth_values, train_accuracies, marker='o', label='Training Accuracy', color='blue')
-    ax.plot(max_depth_values, test_accuracies, marker='o', label='Testing Accuracy', color='green')
-    ax.set_title('Decision Tree Accuracy vs Max Depth', fontsize=14)
-    ax.set_xlabel('Max Depth', fontsize=12)
-    ax.set_ylabel('Accuracy', fontsize=12)
-    ax.legend()
-    ax.grid(True, linestyle='--', alpha=0.7)
-    
-    # Save and display the plot
-    fig.savefig('decision_tree_accuracy.jpg', dpi=300)
-    st.image('decision_tree_accuracy.jpg', caption='Decision Tree Accuracy', use_column_width=True)
 
 st.markdown("---")
 st.markdown("👨‍💻 Built with ❤️ for farmers and agriculturists!")
